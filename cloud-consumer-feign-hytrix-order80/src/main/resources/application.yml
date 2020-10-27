@@ -1,0 +1,21 @@
+server:
+  port: 81
+
+eureka:
+  client:
+    # false表示不向注册中心注册自己
+    register-with-eureka: false
+    # 是否从eurekaServer中抓取己有的注册信息，默认为true, 单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    # fetch-registry: true
+    # 注意这里是service 而不是 server
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+      # 设置与eureka server交互的地址查询服务和注册服务都需要依赖这个地址
+      # ${eureka.instance.hostname}: localhost
+      # ${server.port}: eureka的访问地址
+      # defaultZone: http://localhost:7001/eureka/
+
+# 开启feign对hystrix的支持
+feign:
+  hystrix:
+    enabled: true

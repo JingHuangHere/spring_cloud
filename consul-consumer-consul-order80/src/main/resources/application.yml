@@ -1,0 +1,11 @@
+server:
+  port: 81
+
+spring:
+  application:
+    name: cloud-consumer-order
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500

@@ -1,0 +1,28 @@
+server:
+  port: 81
+
+eureka:
+  client:
+    # false表示不向注册中心注册自己 默认就是false
+    register-with-eureka: false
+    # 是否从eurekaServer中抓取己有的注册信息，默认为true, 单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    # fetch-registry: true
+    # 注意这里是service 而不是 server
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/, http://eureka7002.com:7002/eureka/ #集群版
+      # 设置与eureka server交互的地址查询服务和注册服务都需要依赖这个地址
+      # ${eureka.instance.hostname}: localhost
+      # ${server.port}: eureka的访问地址
+      # defaultZone: http://localhost:7001/eureka/
+
+ribbon:
+  # 建立连接后从服务端读取到资源的时间
+  ReadTimeout: 5000
+  # 建立连接（两端）的时间， 适用于网络正常的情况下
+  ConnectTimeout: 5000
+
+logging:
+  level:
+    # feign日志以什么级别监控哪个接口
+    # copy the reference of the interface in the ./service
+    com.atguigu.springcloud.service.PaymentFeignService: debug
